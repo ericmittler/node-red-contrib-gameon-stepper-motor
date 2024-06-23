@@ -1,0 +1,9 @@
+logs/combined.*
+logs/errors.*
+node_modules/
+node_modules/*
+node_modules
+package-lock.json
+settings.mjs
+.DS_Store
+

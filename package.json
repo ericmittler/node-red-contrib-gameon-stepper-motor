@@ -1,0 +1,11 @@
+{
+  "name": "red-contrib-gameon-stepper-motor",
+  "version": "1.0.0",
+  "description": "Game On i2c Stepper Motor Control",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
