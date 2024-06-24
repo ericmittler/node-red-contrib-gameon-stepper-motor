@@ -45,9 +45,9 @@ class StepperMotorMovement {
 
   input({ msg, send, done }) {
     this.node.log(`Stepper Motor Movement`)
-    const steps = msg.steps || this.steps
+    const steps = parseInt(msg.steps) || this.steps
     const direction = msg.direction || this.direction
-    const pps = msg.pps || this.pps
+    const pps = parseInt(msg.pps) || this.pps
     const text = `Motor ${this.motorNode.name} Stepping ${steps} ${direction} @ ${pps} PPS`
     this.node.status({ fill: 'green', shape: 'dot', text })
     this.node.log(text)
