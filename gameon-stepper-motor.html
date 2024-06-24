@@ -1,0 +1,89 @@
+<script type="text/javascript">
+  RED.nodes.registerType('gameon-stepper-motor', {
+    category: 'config',
+    defaults: {
+      name: { value: '' },
+      address: { value: '0x60', required: true },
+      stepperIndex: { value: 0 },
+    },
+    label: function () {
+      return `${this.name} (index ${stepperIndex} @ ${this.address})`
+    }
+  })
+</script>
+<script type="text/x-red" data-template-name="gameon-stepper-motor">
+	<div class="form-row">
+    <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-config-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+		<label for="node-config-input-address"><i class="icon-bookmark"></i> Address</label>
+		<select type="text" id="node-config-input-address" style="width:70px;">
+       <option value="0x60">0x60</option>
+       <option value="0x61">0x61</option>
+    </select>
+	</div>    
+  <div class="form-row">
+		<label for="node-config-input-address"><i class="icon-bookmark"></i> Index</label>
+		<select type="text" id="node-config-input-stepperIndex" style="width:70px;">
+       <option value="0">0</option>
+       <option value="1">1</option>
+    </select>
+	</div>     
+ </script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('gameon-stepper-motor-movement', {
+    category: 'function',
+    color: '#EAD4E9',
+    defaults: {
+      name: { value: "" },
+      motorNodeID: { type: 'gameon-stepper-motor', required: true },
+      direction: { value: 'fwd' },
+      steps: { value: 100 },
+      pps: { value: 100 },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "font-awesome/fa-gear",
+    label: function () {
+      return this.name || "gameon-stepper-motor-movement";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="gameon-stepper-motor-movement">
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+	<div class="form-row">
+		<label for="node-input-chipNodeID"><i class="fa fa-gear"></i> Motor</label>
+		<input type="text" id="node-input-motorNodeID">
+	</div>
+	<div class="form-row">
+		<label for="node-input-direction"><i class="fa fa-arrows-h"></i> Direction</label>
+    <select id="node-input-direction" style="width: 12rem">
+      <option value="fwd">Forward</option>
+      <option value="back">Backward</option>
+    </select>  
+	</div>
+	<div class="form-row">
+		<label for="node-input-steps"><i class="fa fa-paw"></i> Steps</label>
+		<input type="number" id="node-input-steps">
+	</div>
+	<div class="form-row">
+		<label for="node-input-pps"><i class="fa fa-bolt"></i> PPS</label>
+		<input type="number" id="node-input-pps" placeholder="Pulses per Second">
+	</div>
+</script>
+
+<script type="text/html" data-help-name="gameon-stepper-motor">
+  <h1>Game On Berkeley's i2c Stepper Motor Controller</h1>
+  <p>
+    Asyc control of Stepper Motors.
+  </p>
+  <p>
+    Much of this code inspired by https://github.com/jcane86/motor-hat
+  </p>
+</script>

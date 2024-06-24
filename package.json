@@ -1,11 +1,20 @@
 {
-  "name": "red-contrib-gameon-stepper-motor",
+  "_id": "node-red-contrib-gameon-stepper-motor@1.0.0",
+  "name": "node-red-contrib-gameon-stepper-motor",
   "version": "1.0.0",
   "description": "Game On i2c Stepper Motor Control",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "K Eric Mittler",
+  "dependencies": {
+    "motor-hat": "^2.0.10"
+  },
+  "deprecated": false,
+  "license": "MIT",
+  "node-red": {
+    "nodes": {
+      "gameon-stepper-motor": "gameon-stepper-motor.js"
+    }
+  }
 }
