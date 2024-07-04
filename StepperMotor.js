@@ -46,8 +46,11 @@ class StepperMotorMovement {
   input({ msg, send, done }) {
     this.node.log(`Stepper Motor Movement`)
     const steps = parseInt(msg.steps) || this.steps
-    const direction = msg.direction || this.direction
-    const pps = parseInt(msg.pps) || this.pps
+    let direction = msg.direction || this.direction
+    if (['forward', 'forwards'].includes(direction)) { direction = 'fwd' }
+    if (['backward', 'backwards', 'bk'].includes(direction)) { direction = 'back' }
+    if (!['fwd', 'back'].includes(direction)) { direction = 'fwd' }
+    const pps = parseInt(msg.pps || this.pps)
     const text = `Motor ${this.motorNode.name} Stepping ${steps} ${direction} @ ${pps} PPS`
     this.node.status({ fill: 'green', shape: 'dot', text })
     this.node.log(text)
@@ -77,7 +80,7 @@ class StepperMotorMovement {
             }
           })
           send({
-            steps, direction, stepped, durationSec, retried
+            ...msg, steps, direction, stepped, durationSec, retried
           })
           done()
         }
